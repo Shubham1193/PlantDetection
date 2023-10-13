@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "PlantDetection",
+    "slug": "PlantDetection",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "PlantDetection"
+}
