@@ -8,3 +8,10 @@ applyNativeModulesSettingsGradle(settings)
 
 include ':app'
 includeBuild(new File(["node", "--print", "require.resolve('@react-native/gradle-plugin/package.json')"].execute(null, rootDir).text.trim()).getParentFile())
+
+
+// include ':react-native-image-picker'
+// project(':react-native-image-picker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-picker/android')
+
+include ':tflite-react-native'
+project(':tflite-react-native').projectDir = new File(rootProject.projectDir,   '../node_modules/tflite-react-native/android')

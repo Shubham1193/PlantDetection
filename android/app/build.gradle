@@ -77,17 +77,21 @@ def enableProguardInReleaseBuilds = (findProperty('android.enableProguardInRelea
 def jscFlavor = 'org.webkit:android-jsc:+'
 
 android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "com.plantdetection"
     defaultConfig {
+        targetSdkVersion 27
         applicationId "com.plantdetection"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
 
         buildConfigField("boolean", "REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS", (findProperty("reactNative.unstable_useRuntimeSchedulerAlways") ?: true).toString())
     }
@@ -137,11 +141,13 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-
+    compile project(':tflite-react-native')
     def isGifEnabled = (findProperty('expo.gif.enabled') ?: "") == "true";
     def isWebpEnabled = (findProperty('expo.webp.enabled') ?: "") == "true";
     def isWebpAnimatedEnabled = (findProperty('expo.webp.animated') ?: "") == "true";
     def frescoVersion = rootProject.ext.frescoVersion
+    implementation project(':react-native-image-picker')
+
 
     // If your app supports Android versions before Ice Cream Sandwich (API level 14)
     if (isGifEnabled || isWebpEnabled) {
